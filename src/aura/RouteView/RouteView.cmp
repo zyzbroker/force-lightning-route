@@ -1,4 +1,5 @@
 <aura:component >
+  <aura:attribute name="debug" type="boolean" default="false"/>
   <aura:attribute name="path" type="string" description="route view path"/>
   <aura:attribute name="component" type="string" description="current loaded component name"/>
   <aura:attribute name="parameters" type="object" description="current loaded component properties"/>

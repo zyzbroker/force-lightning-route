@@ -42,8 +42,10 @@
       });
 
     cmp.set('v.routes', routes);
-    console.log('----init router ----');
-    console.log(routes);
+    if(this._isDebug(cmp)){
+        this._debug('----init router----');
+        this._debug(routes);
+    } 
   },
 
   _getRouteView: function(cmp) {
@@ -58,19 +60,22 @@
     if (!data) {
       this._handleIndexRoute(cmp);
     } else {
-      this._handleHashedRoute(cmp, data);
+      this._handleHashedRoute(cmp,data);
     }
   },
 
   _handleIndexRoute: function(cmp) {
-    console.log('----route to index ----');
+    if(this._isDebug(cmp)){
+      console.log('----route to index ----');
+    }
+
     var data, route = this._getIndexRoute(cmp);
     if (!route) {
       return;
     }
     data = this._cloneObject(route);
     this._replaceState(data);
-    this._handleHashedRoute();
+    this._handleHashedRoute(cmp, data);
   },
 
   _cloneObject: function(src) {
@@ -101,8 +106,10 @@
     return indexes[0];
   },
 
-  _handleHashedRoute: function() {
-    console.log('-----route to hashed route-----');
+  _handleHashedRoute: function(cmp, data) {
+    if(this._isDebug(cmp)){
+      this._debug('-----route to hashed route-----');
+    }
     var appEvt = $A.get('e.c:RouteRequestAppEvent');
     appEvt.fire();
   },
@@ -120,7 +127,7 @@
     var data = this._cloneObject(route);
     data.parameters = context.parameters;
     this._pushState(data);
-    this._handleHashedRoute();
+    this._handleHashedRoute(cmp,data);
   },
 
   _findRoute: function(cmp) {
@@ -185,9 +192,19 @@
 
     toast.fire();
   },
+
+  _isDebug: function(cmp){
+    return !!cmp.get('v.debug');
+  },
+
+  _debug: function(msg){
+    console.log(msg);
+  },
+
   _encode: function(data) {
     return window.btoa(unescape(encodeURIComponent(data)));
   },
+  
   _decode: function(data) {
       return decodeURIComponent(escape(window.atob(data)));
     }

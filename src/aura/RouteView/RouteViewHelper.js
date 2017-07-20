@@ -2,7 +2,10 @@
   _HASH_PREFIX: 'nav',
 
   init: function(cmp, evt) {
-    console.log('---- init routeView:' + cmp.get('v.path') + '----');
+    if(this._isDebug(cmp)){
+      this._debug('---- init routeView:' + cmp.get('v.path') + '----');
+    }
+    
     var data = this._getHashData();
     if (!data) {
       return;
@@ -20,7 +23,9 @@
       if (viewPath[i] === myPath) {
         component = cmpPath[i];
         if (!this._shouldLoadComponent(cmp, component, parameters)) {
-          console.log('----component:' + component + ' already loaded----');
+          if(this._isDebug(cmp)){
+            this._debug('----component:' + component + ' already loaded----');
+          }
           return;
         }
         cmp.set('v.component', component);
@@ -32,7 +37,9 @@
   },
 
   route: function(cmp, evt) {
-    console.log('----subscribe to route app event----' + cmp.get('v.path'));
+    if(this._isDebug(cmp)){
+      this._debug('----subscribe to route app event----' + cmp.get('v.path'));
+    }
     var data = this._getHashData();
     if (!data) {
       return;
@@ -83,6 +90,14 @@
         return source[k] != target[k];
       });
     }
+  },
+
+  _isDebug: function(cmp){
+    return !!cmp.get('v.debug');
+  },
+
+  _debug: function(msg){
+    console.log(msg);
   },
 
   _encode: function(data) {

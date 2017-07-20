@@ -1,0 +1,4 @@
+<aura:event type="Component" description="an envent that indicates that an item is selected">
+  <aura:attribute name="id" type="string" description="event id"/>
+  <aura:attribute name="context" type="object" default="" description="message context"/>
+</aura:event>

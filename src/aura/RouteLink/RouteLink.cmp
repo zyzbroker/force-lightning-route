@@ -1,0 +1,10 @@
+<aura:component >
+  <aura:attribute name="url" type="string"/>
+  <aura:attribute name="parameters" type="object"/>
+  <aura:attribute name="target" type="string"/>
+  <aura:attribute name="class" type="string"/>
+  <aura:registerEvent name="__route_link_clicked" type="c:SimpleComponentEvent"/>
+  <a href="javascript:void()" target="{!v.target}" onclick="{!c.onClick}" class="{!join(' ', 'route-link', v.class)}">
+   {!v.body}
+  </a>
+</aura:component>

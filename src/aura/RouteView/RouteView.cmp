@@ -1,0 +1,10 @@
+<aura:component >
+  <aura:attribute name="path" type="string" description="route view path"/>
+  <aura:attribute name="component" type="string" description="current loaded component name"/>
+  <aura:attribute name="parameters" type="object" description="current loaded component properties"/>
+  <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+  <aura:handler event="c:RouteRequestAppEvent" action="{!c.onRoute}"/>
+  <div class="route-view">
+    {!v.body}
+  </div>
+</aura:component>

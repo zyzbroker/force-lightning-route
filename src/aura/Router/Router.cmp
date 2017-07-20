@@ -1,0 +1,7 @@
+<aura:component >
+  <aura:attribute name="routes" type="List" description="route definitions"/>
+  <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+  <aura:handler name="__route_link_clicked" event="c:SimpleComponentEvent" includeFacets="true" action="{!c.onRouteLinkClick}"/>
+  <aura:registerEvent name="publishRouteRequest" type="c:RouteRequestAppEvent"/>
+  {!v.body}
+</aura:component>

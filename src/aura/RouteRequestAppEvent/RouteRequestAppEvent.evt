@@ -1,0 +1,2 @@
+<aura:event type="APPLICATION" description="The router publishes this event to notify all children component">
+</aura:event>

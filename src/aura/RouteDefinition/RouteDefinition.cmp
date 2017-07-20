@@ -1,0 +1,6 @@
+<aura:component >
+  <aura:attribute name="url" type="string" description="semnatic route url identifier"/>
+  <aura:attribute name="directTo" type="string" description="direct url to the directTo specified url"/>
+  <aura:attribute name="routeViewRelation" type="string" description="route view path definition"/>
+  <aura:attribute name="componentRelation" type="string" description="component relationship map"/>
+</aura:component>
